@@ -39,21 +39,23 @@ class Investment:
     
     
 
-def user_input():
-    principal = float(input("How much is your starting amount?" ))
-    interest_rate = (input("What is your interest rate?" ))
-    interest_rate = parse_interest_rate(interest_rate)
-    years = int(input("How many years? "))
-    compounds_frequency = float(input("How many compounds per year? "))
-    contribution_ammount = float(input("What is your contribution amount? "))
-    contribution_frequency = int(input("How many contributions per year? "))
-    method = input("Would you like to see the year by year growth? (yes/no) ").lower().strip()
-    if method == "yes":
-        Investment.compound_interest_yby(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency, years)
-    elif method == "no":
-        Investment.compound_interest(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency, years)
-    else:
-        print("Please enter yes or no.")
+    def user_input():
+        principal = float(input("How much is your starting amount?" ))
+        interest_rate = (input("What is your interest rate?" ))
+        interest_rate = parse_interest_rate(interest_rate)
+        years = int(input("How many years? "))
+        compounds_frequency = float(input("How many compounds per year? "))
+        contribution_ammount = float(input("What is your contribution amount? "))
+        contribution_frequency = int(input("How many contributions per year? "))
+        method = input("Would you like to see the year by year growth? (yes/no) ").lower().strip()
+        if method == "yes":
+            investment = Investment(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency)
+            investment.compound_interest_yby(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency, years)
+        elif method == "no":
+            investment = Investment(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency)
+            investment.compound_interest(principal, interest_rate, compounds_frequency, contribution_ammount, contribution_frequency, years)
+        else:
+            print("Please enter yes or no.")
 
 
 def parse_interest_rate(user_interest_input):
@@ -90,4 +92,11 @@ else:
 '''
 
 #test 2.0
-Investment.compound_interest(1000, 0.05, 12, 100, 12, 10)
+'''
+investment= Investment(1000, 0.05, 12, 100, 12)
+investment.compound_interest(1000, 0.05, 12, 100, 12, 10)
+
+investment.compound_interest_yby(1000, 0.05, 12, 100, 12, 10) 
+'''
+#test 3.0
+Investment.user_input()
