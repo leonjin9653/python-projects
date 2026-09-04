@@ -1,3 +1,12 @@
+'''
+This program contains methods for the following technical indicators:
+simple moving average, exponential moving average, relative strength index,
+moving average convergence divergence, and bollinger bands.
+While indicators like sma can easily be done with .rolling(window).mean(),
+this was a fun way for me to get a better understanding of the math behind the indicators.
+All output from individual indicators can be visualized. 
+'''
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -383,6 +392,6 @@ close_prices ={
 
 ### testing ###
 test = Technical_Indicator(close_prices)
-result = test.bollingerband()
+result = test.rsi(14)
 print(result)
-test.graph(result, kind="bollinger")
+test.graph(result, kind="rsi")
